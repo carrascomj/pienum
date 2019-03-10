@@ -1,0 +1,116 @@
+@import url('http://fonts.googleapis.com/css?family=Arvo:700|Open+Sans:400italic,400');
+@import url('http://fast.fonts.com/cssapi/95b765fd-fae4-4f1b-8155-d8244914a5c6.css');
+body {
+    background-color : white;
+    font-family : 'Arvo', 'Lucida Handwriting';
+    color : rgb(13,18,102);
+    }
+.Plet {
+    color : red
+    }
+.ilet {
+    color : green
+    }
+.elet {
+    color : blue
+    }
+.header{
+    color: rgb(255,255,180);
+    background-color: rgb(0,0,30);
+    height: 130px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+h1 {
+    font-family : 'Adelle W01 Bold', 'Arvo', Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+    text-align : center;
+    margin-top : 10px;
+    margin-bottom : 2px;
+    font-size : 60px;
+    }
+h2 {
+    text-align : center;
+    font-style: cursive;
+    font-size: 25px;
+    padding : 0;
+    margin : 0;
+}
+#box {
+    border-radius: 25px;
+    position: relative;
+    border : dashed;
+    padding: 20px;
+    border-color : grey;
+    top: 300px;
+    left: 150px;
+    width: 17%;
+    font-size: 26px;
+    text-align: center;
+    height: 200px;
+    margin : 7px;
+    padding: 2px;
+    background-color : rgb(215, 215, 255);
+}
+#charts {
+    position : relative;
+    left: 700px;
+    bottom: 120px;
+    height : 400px;
+    z-index: -1;
+}
+#drag-text{
+    position: relative;
+}
+#explanation{
+    position: absolute;
+    top: 120px;
+    margin: 40px;
+    width: 40%;
+    font-family: georgia;
+    font-style: oblique;
+    text-align: justify;
+}
+.params{
+    position: relative;
+    top: 310px;
+    left: 200px;
+    width: 30%;
+}
+.pressable{
+    cursor: pointer;
+}
+#kcent{
+    width: 5%;
+    overflow: ;
+}
+#fileb{
+    position: relative;
+    bottom: 30px;
+    left: 30px;
+}
+.preview{
+    font-family: sans;
+    font-size: 12px;
+    position: relative;
+    bottom: 60px;
+}
+#labbrows{
+    font-family: sans;
+    position: relative;
+    bottom: 35px;
+    background-color: grey;
+    font-size: 15px;
+    border: solid;
+    cursor: pointer;
+    padding: 2px;
+}
+#userimg{
+    position: absolute;
+    overflow: auto;
+    top: 60px;
+    left: 250px;
+    height: 100px;
+    width: 55%;
+}
