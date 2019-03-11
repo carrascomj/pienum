@@ -114,8 +114,10 @@ function KMeans (data, k){
         return true
     }
 
-    this.run = function () {
+    this.run = function (pos) {
         // Main function, compute KMEANS algorithm
+        // pos will be used just if lines are to be removed.
+        pos = pos || false;
         this.centroids = this.random_centroids();
         var assignment = new Array(this.data.length);
         var clusters = new Array(k);
@@ -126,7 +128,7 @@ function KMeans (data, k){
             it += 1;
             // update point-to-centroid assignments
             for (var p = 0; p < this.data.length; p += 1){
-                assignment[p] = this.classify(data[p])
+                assignment[p] = this.classify(this.data[p])
             }
             // update location of each centroid
             movement = false;
@@ -158,6 +160,26 @@ function KMeans (data, k){
             }
         }
         this.clusters = clusters;
+        if (pos != false){
+            // filter cluster of lines
+            this.pos = pos
+            for (var c = 0; c < this.clusters.length; c++){
+                if (this.clusters[c] / assignment.length < 0.01){
+                    // remove lines
+                    var ind = -1;
+                    while (true){
+                        ind = assignment.indexOf(c);
+                        if (ind == -1){
+                            break
+                        }
+                        this.data.splice(ind, 1);
+                        this.pos.splice(ind, 1);
+                        assignment.splice(ind, 1)
+                    }
+                    return this.run()
+                }
+            }
+        }
         this.assignment = assignment;
         this.iterations = it;
         return assignment;
