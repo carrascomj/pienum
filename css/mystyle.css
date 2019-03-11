@@ -162,6 +162,7 @@ h2 {
 .code-div{
     background-color: rgb(253,253,170);
     overflow: auto;
+    border-left: solid yellow;
     margin: 10px;
 }
 pre{
