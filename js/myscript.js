@@ -1,3 +1,8 @@
+// Main script of the webpage Pynum
+
+// Author: Jorge Carrasco Muriel
+// Date of creation: 08/03/2019
+
 var target_drag = document.getElementById("box"); // div drag&drop
 var target_brows = document.getElementById("fileb"); // input file browser
 var preview = document.querySelector(".preview"); // text name of input
@@ -6,6 +11,7 @@ var k = document.getElementById("kcent"); // number of centroids (text form)
 var back = document.getElementById("toggle-on"); // remove background (round form)
 var back_off = document.getElementById("toggle-off"); // don't remove background (round form)
 back.checked = true; // default
+k.value = "0";
 
 submit.style.cursor = "default"; // don't change pointer
 
@@ -183,10 +189,80 @@ function updateIfBackNo(event) {
 back_off.addEventListener('change', updateIfBackNo);
 
 function processInput(event){
-    event.preventDefault()
+    event.preventDefault();
     var file = sender.file;
-    fread = new FileReader();
-    fread.readAsDataURL(file)
-    console.log(fread)
+    var data = new processPixels(file);
+    data.extract_data();
+    var pos = data.pos.slice();
+    var k = sender.back ? sender.k*1 + 1 : sender.k;
+    console.log(sender.k);
+    kobj = new KMeans(data.RGBval, k);
+    kobj.run();
+    var num_pos = kobj.mapMean(pos);
+    totpix = pos.length;
+    clust = kobj.clusters;
+    centroids = kobj.centroids;
+    lab_backg = mode(kobj.assignment.slice(0,25)); // from the top of the img
+    // free memory
+    kobj = null;
+    data = null;
+    pos = null;
+    for (var i = 0; i < clust.length; i++){
+        clust[i] = clust[i].length * 100 / totpix
+    }
+    if (sender.back){
+        // var backg = -1;
+        // var ind = 0;
+        // for (var i = 0; i < clust.length; i++){
+        //     if (clust[i] > backg){
+        //         backg = clust[i];
+        //         ind = i
+        //     }
+        // }
+        var ind = lab_backg;
+        var backg = clust[lab_backg];
+        clust.splice(ind, 1);
+        num_pos.splice(ind, 1);
+        centroids.splice(ind,1)
+        backg = 100 - backg
+        for (var i = 0; i < clust.length; i++){
+            clust[i] = clust[i] * 100 / backg;
+        }
+    }
+    // Print data to img
+    var img = document.createElement('img');
+    img.src = window.URL.createObjectURL(file);
+    var canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var context = canvas.getContext('2d');
+    context.font = "10pt Verdana";
+    context.clearRect(0,0,canvas.width,canvas.height);
+    context.drawImage(img, 0, 0 );
+    context.fillStyle = "black";
+    for (var i = 0; i < clust.length; i++){
+        var p = document.createElement('p');
+        p.value = clust[i];
+        context.fillText(p.value,num_pos[i][0],num_pos[i][1]);
+    }
+    // Add a legend
+    var listElement = document.createElement('ul');
+    for (var i = 0; i < centroids.length; i++){
+        var listItem = document.createElement('li');
+        listItem.innerHTML = clust[i];
+        listItem.style.color = 'rgb('+ centroids[i].join(',') +')';
+        listItem.style.fontSize = "12";
+        listElement.appendChild(listItem);
+    }
+    // Draw it to page
+    var new_image_url = canvas.toDataURL();
+    var img2 = document.createElement('img');
+    img2.src = new_image_url;
+    console.log(img2);
+    // window.open(img2.src, img2)
+    var fff = document.getElementById("final");
+    fff.style.zIndex = "3";
+    fff.appendChild(img2);
+    fff.appendChild(listElement);
 }
-submit.addEventListener('click', processInput)
+submit.addEventListener('click', processInput);

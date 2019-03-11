@@ -1,3 +1,8 @@
+/* Main style of the web page Pynum
+
+Author: Jorge Carrasco Muriel
+Date of creation: 08/03/2019*/
+
 @import url('http://fonts.googleapis.com/css?family=Arvo:700|Open+Sans:400italic,400');
 @import url('http://fast.fonts.com/cssapi/95b765fd-fae4-4f1b-8155-d8244914a5c6.css');
 body {
@@ -56,14 +61,45 @@ h2 {
 #charts {
     position : relative;
     left: 700px;
+    width: 38%;
     bottom: 120px;
     height : 400px;
-    z-index: -1;
+    z-index: 2;
 }
-#drag-text{
+#final{
+    position : relative;
+    left: 670px;
+    bottom: 540px;
+    width: 39%;
+    height: 400px;
+    background: white;
+    padding : 10px;
+    border: dashed;
+    z-index: 1;
+    overflow: auto;
+}
+#isbackimg {
+    position: relative;
+    bottom: 155px;
+    right: 470px;
+    width: 12%;
+}
+#previmg {
+    position:relative;
+    bottom: 330px;
+    right: 170px;
+    width: 12%;
+}
+#catKimg{
+    position:relative;
+    bottom: 84px;
+    right: 395px;
+    width: 12%;
+}
+#drag-text {
     position: relative;
 }
-#explanation{
+#explanation {
     position: absolute;
     top: 120px;
     margin: 40px;
@@ -72,7 +108,7 @@ h2 {
     font-style: oblique;
     text-align: justify;
 }
-.params{
+.params {
     position: relative;
     top: 310px;
     left: 200px;
