@@ -197,12 +197,13 @@ function processInput(event){
     var k = sender.back ? sender.k*1 + 1 : sender.k;
     console.log(sender.k);
     kobj = new KMeans(data.RGBval, k);
-    kobj.run();
+    kobj.run(pos);
+    pos = kobj.pos;
     var num_pos = kobj.mapMean(pos);
     totpix = pos.length;
     clust = kobj.clusters;
     centroids = kobj.centroids;
-    lab_backg = mode(kobj.assignment.slice(0,25)); // from the top of the img
+    lab_backg = mode(kobj.assignment.slice(0,1)); // from the top of the img
     // free memory
     kobj = null;
     data = null;
@@ -211,14 +212,6 @@ function processInput(event){
         clust[i] = clust[i].length * 100 / totpix
     }
     if (sender.back){
-        // var backg = -1;
-        // var ind = 0;
-        // for (var i = 0; i < clust.length; i++){
-        //     if (clust[i] > backg){
-        //         backg = clust[i];
-        //         ind = i
-        //     }
-        // }
         var ind = lab_backg;
         var backg = clust[lab_backg];
         clust.splice(ind, 1);
