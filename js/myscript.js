@@ -227,6 +227,7 @@ function processInput(event){
         backg = 100 - backg
         for (var i = 0; i < clust.length; i++){
             clust[i] = clust[i] * 100 / backg;
+            // clust[i] = Number(Math.round(clust[i]+'e2')+'e-2'); // round
         }
     }
     // Print data to img
@@ -242,14 +243,15 @@ function processInput(event){
     context.fillStyle = "black";
     for (var i = 0; i < clust.length; i++){
         var p = document.createElement('p');
-        p.value = clust[i];
+        var a = Number(Math.round(clust[i]*100)/100)
+        p.value = a;
         context.fillText(p.value,num_pos[i][0],num_pos[i][1]);
     }
     // Add a legend
     var listElement = document.createElement('ul');
     for (var i = 0; i < centroids.length; i++){
         var listItem = document.createElement('li');
-        listItem.innerHTML = clust[i];
+        listItem.innerHTML = clust[i]; // testing
         listItem.style.color = 'rgb('+ centroids[i].join(',') +')';
         listItem.style.fontSize = "12";
         listElement.appendChild(listItem);

@@ -42,6 +42,15 @@ h2 {
     padding : 0;
     margin : 0;
 }
+.link-own{
+    color: yellow;
+    position: absolute;
+    bottom: 50px;
+    right: 30px;
+    /* border: solid; */
+    cursor: pointer;
+    padding : 4px;
+}
 #box {
     border-radius: 25px;
     position: relative;
@@ -149,4 +158,23 @@ h2 {
     left: 250px;
     height: 100px;
     width: 55%;
+}
+.code-div{
+    background-color: rgb(253,253,170);
+    overflow: auto;
+    margin: 10px;
+}
+pre{
+    position: relative;
+    margin: 12px;
+}
+#gif-div{
+    position: fixed;
+    width: 55%;
+    top: 200px;
+    left : 620px;
+}
+#gif{
+    position: relative;
+    width: 90%;
 }

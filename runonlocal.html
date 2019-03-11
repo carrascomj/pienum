@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pienum: put sense on insensible graphics!</title>
+	<link rel="stylesheet" media="screen" href="css/mystyle.css" type="text/css">
+	<meta name="author" content="Jorge Carrasco Muriel">
+	<meta name="description" content="Some machine learning front-end Web API">
+</head>
+<body>
+    <div class = page-wrapper>
+        <div class = header>
+            <h1 id = "title page"><span class= "Plet">P</span><span class= "ilet">i</span><span class= "elet">e</span>num
+            </h1>
+            <h2 id = "surname"> Put some sense on insensible graphics!</h2>
+            <a class="link-own" href="myindex.html">Home</a>
+        </div>
+    </div>
+    <div id="explanation">
+    <p>A Python script is provided to calculate your desired numbers on local.
+        First, you might need to install the modules used in the script. Something like:
+        <div class = "code-div"><pre lang = "bash"><code lang = "bash">pip install --user sklearn pandas pillow
+        </pre></code></div>
+        would work in Linux. I haven't checked other platforms, but it should work
+        (why not?).
+        <div class = "code-div"><pre lang = "python" ><code lang = "python">#!/usr/bin/python3
+
+        # Script to clumsily write the percentages of a non annotated pie chart.
+
+        # Author: Jorge Carrasco Muriel
+        # Date: 01/03/2018
+
+        from PIL import Image
+        from PIL import ImageDraw
+        from sklearn.cluster import KMeans
+        import pandas as pd
+        import sys
+
+        background = True
+        k = 10
+        if len(sys.argv) > 1:
+            image_file = sys.argv[1]
+            if len(sys.argv) > 2:
+                k = int(sys.argv[2]) + 1
+        else:
+            image_file = "my_image.png"
+
+        # 1. Get data
+        im = Image.open(image_file)
+        pix = im.load()
+        (width, height) = im.size # Width and hight of the image for iterating over
+        pixels = []
+        xpos = []
+        ypos = []
+        for x in range(width):
+            for y in range(height):
+                pixels.append(pix[x,y]) # RGBA Value of the a pixel of an image
+                xpos.append(x)          # though alpha channel won't be used.
+                ypos.append(y)
+        df = pd.DataFrame(pixels)
+
+        # 2. Clustering
+        df["ypos"] = ypos
+        df["xpos"] = xpos
+        kmeans = KMeans(n_clusters=k).fit(df.iloc[:,0:2])
+        df["labels"] = kmeans.labels_
+
+        # 3. Means and count
+        if background:
+            white = df.iloc[0,(len(df.columns)-1)]
+            df.drop(df[df.labels == white].index, inplace = True)
+        means = df.groupby(['labels']).mean()
+        means["percentage"] = df.groupby(['labels']).count()["xpos"]*100/len(df.index)
+
+        # 4. Draw
+        draw = ImageDraw.Draw(im)
+        for index, row in means.iterrows():
+            draw.text((row["xpos"], row["ypos"]),str(round(row["percentage"], 2)),(0,0,0))
+        im.show()
+        # Print it to screen to have a guide
+        toprint = means.iloc[:,[0,1,2,len(means.columns)-1]]
+        toprint.columns = ["R", "G", "B", "Percentage"]
+        print(toprint.sort_values("Percentage"))</code></pre></div>
+    </div>
+    <div id = "gif-div">
+        <img id = "gif" src="./imgs/myimage.gif">
+    </div>
+</body>
