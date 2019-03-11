@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pienum: put sense on insensible graphics!</title>
+	<link rel="stylesheet" media="all" href="css/mystyle.css" type="text/css">
+    <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/css/mobile.css" />
+    <!-- In mobile phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="author" content="Jorge Carrasco Muriel">
+	<meta name="description" content="Some machine learning front-end Web API">
+</head>
+<body>
+    <div class = page-wrapper>
+        <div class = header>
+            <h1 id = "title page"><span class= "Plet">P</span><span class= "ilet">i</span><span class= "elet">e</span>num
+            </h1>
+            <h2 id = "surname"> Put some sense on insensible graphics!</h2>
+            <a class="link-own" href="runonlocal.html">Run on local</a>
+        </div>
+        <div id="explanation">
+        <p>There are some times, in the life of an adult, when you encounter
+            difficulties which get you angry and sad. <br>Usually, these difficulties
+            are people. And hardly ever, this annoying people hasn't added numbers to their
+             <strong><span class="Plet">p</span><span class= "ilet">i</span><span class= "elet">e</span></strong>
+             <span class="Plet">c</span><span class= "ilet">h</span><span class= "elet">a</span><span class="Plet">r</span><span class= "ilet">t</span><span class= "elet">s</span>.<br>
+            Just upload your image to the browser and <strong>get happy again!<strong></p>
+        </div>
+            <div id="box">
+                <h5 id = "drag-text" onmouseover="style.color='red'" onmouseout="style.color='green'"=>
+                    Drag your chart here!<br>or<br>
+                </h5>
+                <label for="fileb" id = "labbrows" class="pressable">Choose a file</label>
+                <input type="file" name="fileb" id="fileb" class="inputfile" />
+                <div class="preview">
+                    <p>No files selected</p>
+                </div>
+                <div id = "userimg"></div>
+            </div>
+            <form class="params">
+                <p style="display:inline">Background?</p>
+                <input id="toggle-on" name="toggle" type="radio"><label for="toggle-on" class="pressable">Yes</label>
+                <input id="toggle-off" name="toggle" type="radio"><label for="toggle-off" class="pressable">No</label><br>
+                <label for="kcent">Number of colours?</label>
+                <input type="text" name ="k" id = "kcent" value="3"><br>
+                <input type="submit" value="Get my numbers!" class = "pressable" id="go" disabled>
+            </form>
+            <img id = "charts" src=./imgs/tripie.svg>
+            <img id = "isbackimg" src=./imgs/isback.svg>
+            <img id = "previmg" src=./imgs/preview.svg>
+            <img id = "catKimg" src=./imgs/catK.svg>
+            <div id = "final"></div>
+    </div>
+    <script src="js/clustering.js"></script>
+    <!-- <script src="lib/clusterfck.js"></script> -->
+    <script src="js/myscript.js"></script>
+</body>
