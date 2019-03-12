@@ -94,6 +94,7 @@ var sender = {
         var k = this._k;
         if (k && "undefined" != typeof(file["size"])){
             submit.disabled = false;
+            submit.style.cursor = "pointer";
         }
     }
 }

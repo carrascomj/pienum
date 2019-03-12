@@ -70,42 +70,26 @@ h2 {
 }
 #final{
     position : relative;
-    left: 670px;
-    bottom: 540px;
-    width: 39%;
+    width: 90%;
     height: 400px;
     background: white;
     padding : 10px;
+    margin: 10px;
     border: dashed;
     overflow: auto;
 }
-#isbackimg {
-    position: relative;
-    bottom: 155px;
-    right: 470px;
-    width: 12%;
-}
-#previmg {
-    position:relative;
-    bottom: 330px;
-    right: 170px;
-    width: 12%;
-}
-#catKimg{
-    position:relative;
-    bottom: 84px;
-    right: 395px;
-    width: 12%;
+.exp-tag {
+    display : none;
 }
 #drag-text {
     position: relative;
     display: none;
 }
 #explanation {
-    position: absolute;
+    position: relative;
     top: 120px;
-    margin: 40px;
-    width: 40%;
+    margin: 30px;
+    width: 90%;
     font-family: georgia;
     font-style: oblique;
     text-align: justify;
@@ -120,7 +104,6 @@ h2 {
     }
 #kcent{
     width: 5%;
-    overflow: ;
 }
 #fileb{
     position: relative;
@@ -158,15 +141,13 @@ h2 {
 }
 pre{
     position: relative;
-    margin: 12px;
+    margin: 10px;
 }
 #gif-div{
-    position: fixed;
-    width: 55%;
-    top: 200px;
-    left : 620px;
+    position: relative;
+    width: 90%;
+    margin: 10px;
 }
 #gif{
     position: relative;
-    width: 90%;
 }
