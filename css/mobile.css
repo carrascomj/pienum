@@ -33,12 +33,12 @@ h1 {
     text-align : center;
     margin-top : 10px;
     margin-bottom : 2px;
-    font-size : 60px;
+    font-size : 55px;
     }
 h2 {
     text-align : center;
     font-style: cursive;
-    font-size: 25px;
+    font-size: 22px;
     padding : 0;
     margin : 0;
 }
@@ -52,7 +52,7 @@ h2 {
 }
 #box {
     border-radius: 25px;
-    position: center;
+    position: relative;
     border : dashed;
     padding: 20px;
     border-color : grey;
@@ -71,7 +71,6 @@ h2 {
 #final{
     position : relative;
     width: 90%;
-    height: 400px;
     background: white;
     padding : 10px;
     margin: 10px;
@@ -87,8 +86,7 @@ h2 {
 }
 #explanation {
     position: relative;
-    top: 120px;
-    margin: 30px;
+    margin: 10px;
     width: 90%;
     font-family: georgia;
     font-style: oblique;
